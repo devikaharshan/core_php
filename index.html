@@ -1,0 +1,48 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "task1";
+
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+
+if(isset($_POST['save']))
+{
+
+   $name=$_POST['name'];
+   $email=$_POST['email']; 
+   $sql=mysqli_query($con,"insert into stud_det values('$name','$email')");
+  
+}
+
+if ($conn->query($sql) === TRUE) {
+    echo "New record created successfully";
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
+$conn->close();
+?>
+<html>
+
+<body>
+
+<form action="" method="post">
+
+Firstname: <input type="text" name="fname" /><br><br>
+
+Lastname: <input type="text" name="lname" /><br><br>
+
+ 
+
+<input type="submit" name="save"/>
+
+</form>
+
+</body>
+</html>
